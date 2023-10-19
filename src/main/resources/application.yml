@@ -1,0 +1,19 @@
+server:
+  port: 9191
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://dev-vmww305d7b1ue758.us.auth0.com/.well-known/jwks.json
+          issuer-uri: https://dev-vmww305d7b1ue758.us.auth0.com/
+
+  data:
+    mongodb:
+      database: ${MONGO_DATABASE}
+      username: ${MONGO_USERNAME}
+      password: ${MONGO_PASSWORD}
+      host: ${MONGO_HOST}
+      port: ${MONGO_PORT}
+      authentication-database: admin
+      auto-index-creation: true

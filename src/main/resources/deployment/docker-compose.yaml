@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+
+  haproxy_gateway:
+    container_name: haproxy_gateway
+    image: haproxy:2.4.0
+    restart: always
+    ports:
+      - "9292:9292"
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+  mongo_wallet:
+    image: mongo:5.0
+    restart: always
+    container_name: mongo_wallet
+    ports:
+      - "27022:27017"
+    env_file:
+      - mongo.env
