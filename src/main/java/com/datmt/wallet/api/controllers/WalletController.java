@@ -4,7 +4,6 @@ import com.datmt.wallet.api.models.PageResponse;
 import com.datmt.wallet.api.models.Wallet;
 import com.datmt.wallet.api.services.WalletService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

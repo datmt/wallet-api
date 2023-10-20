@@ -5,11 +5,13 @@ import com.datmt.wallet.api.models.Transaction;
 import com.datmt.wallet.api.repositories.TransactionRepository;
 import com.datmt.wallet.api.repositories.WalletRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class TransactionService {
 
     private final TransactionRepository transactionRepository;
@@ -19,6 +21,7 @@ public class TransactionService {
     public Transaction create(Transaction transaction) {
 
         validateTransaction(transaction);
+        transaction.setOwnerId(currentUserService.getCurrentUserId());
         return transactionRepository.save(transaction);
     }
 
@@ -56,5 +59,18 @@ public class TransactionService {
             throw new IllegalArgumentException("Transaction title is required");
         }
 
+    }
+
+    public void delete(String id) {
+        //find the tx
+        var transaction = transactionRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Transaction not found"));
+
+        log.info("find wallet id: {} by owner id {}", transaction.getWalletId(), currentUserService.getCurrentUserId());
+        //verify that the owner owns the wallet
+        walletRepository.findByOwnerIdAndId(currentUserService.getCurrentUserId(), transaction.getWalletId())
+                .orElseThrow(() -> new IllegalArgumentException("Wallet not found"));
+
+        //delete the tx
+        transactionRepository.deleteById(id);
     }
 }

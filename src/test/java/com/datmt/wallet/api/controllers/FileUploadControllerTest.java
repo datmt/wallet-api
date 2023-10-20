@@ -23,11 +23,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc(addFilters = false)
 class FileUploadControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
-
     @MockBean
     FileUploadService fileUploadService;
+    @Autowired
+    private MockMvc mockMvc;
 
     @Test
     @DisplayName("Test upload file")

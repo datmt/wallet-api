@@ -1,17 +1,18 @@
 package com.datmt.wallet.api.models;
 
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.MongoId;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Document(collection = "transactions")
 @Data
-public class Transaction {
+public class Transaction implements Serializable {
 
-    @MongoId
+    @Id
     private String id;
     private String walletId;
     private String title;

@@ -14,6 +14,7 @@ public class WalletService {
     private final WalletRepository walletRepository;
     private final CurrentUserService currentUserService;
     private final TransactionRepository transactionRepository;
+
     public Wallet create(Wallet wallet) {
         //assert that wallet has a title
         if (wallet.getTitle() == null || wallet.getTitle().isEmpty()) {

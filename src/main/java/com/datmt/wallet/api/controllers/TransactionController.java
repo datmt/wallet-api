@@ -32,4 +32,9 @@ public class TransactionController {
     ) {
         return transactionService.list(walletId, page, size);
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable String id) {
+        transactionService.delete(id);
+    }
 }

@@ -1,6 +1,8 @@
 package com.datmt.wallet.api.models;
 
-public enum TransactionType {
+import java.io.Serializable;
+
+public enum TransactionType implements Serializable {
     DEPOSIT,
     WITHDRAW
 }
