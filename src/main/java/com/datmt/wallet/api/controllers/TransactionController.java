@@ -4,6 +4,7 @@ import com.datmt.wallet.api.models.PageResponse;
 import com.datmt.wallet.api.models.Transaction;
 import com.datmt.wallet.api.services.TransactionService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,6 +14,7 @@ public class TransactionController {
     private final TransactionService transactionService;
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Transaction create(@RequestBody Transaction transaction) {
         return transactionService.create(transaction);
     }

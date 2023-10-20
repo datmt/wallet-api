@@ -2,6 +2,7 @@ package com.datmt.wallet.api.services;
 
 import com.datmt.wallet.api.models.PageResponse;
 import com.datmt.wallet.api.models.Wallet;
+import com.datmt.wallet.api.repositories.TransactionRepository;
 import com.datmt.wallet.api.repositories.WalletRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class WalletService {
     private final WalletRepository walletRepository;
     private final CurrentUserService currentUserService;
-
+    private final TransactionRepository transactionRepository;
     public Wallet create(Wallet wallet) {
         //assert that wallet has a title
         if (wallet.getTitle() == null || wallet.getTitle().isEmpty()) {
@@ -61,6 +62,8 @@ public class WalletService {
         walletRepository.findByOwnerIdAndId(currentUserService.getCurrentUserId(), walletId)
                 .orElseThrow(() -> new IllegalArgumentException("Wallet not found"));
 
+        //delete all tx
+        transactionRepository.deleteAllByWalletId(walletId);
         walletRepository.deleteById(walletId);
     }
 

@@ -13,4 +13,5 @@ public interface TransactionRepository extends MongoRepository<Transaction, Stri
 
     Page<Transaction> findAllByWalletIdAndType(String walletId, TransactionType type, Pageable page);
 
+    void deleteAllByWalletId(String walletId);
 }
