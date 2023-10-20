@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.UUID;
 
 @Service
@@ -39,5 +40,11 @@ public class FileUploadService {
         fileUpload.setS3Path(storageFilePath);
 
         return fileUploadRepository.save(fileUpload);
+    }
+
+    public String getFileUrl(String id) throws URISyntaxException {
+        var file = fileUploadRepository.findById(id).orElseThrow();
+        var awsS3File = new AwsS3File();
+        return awsS3File.generateDownloadURL(file.getS3Path()).toURI().toString();
     }
 }
