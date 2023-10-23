@@ -11,7 +11,7 @@ services:
     volumes:
       - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
   mongo_wallet:
-    image: mongo:6.0.3
+    image: mongo:5.0
     restart: always
     container_name: mongo_wallet
     ports:
