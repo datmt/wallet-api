@@ -8,5 +8,5 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories(basePackages = {"com.datmt.wallet.api.repositories"})
 @EnableMongoAuditing
 public class AppConfig {
-   // ...
+   // ... //
 }
