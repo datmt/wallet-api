@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class CurrentUserService {
-
     public String getCurrentUserId() {
         var authentication = SecurityContextHolder.getContext().getAuthentication();
 
