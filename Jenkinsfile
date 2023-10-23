@@ -24,6 +24,7 @@ pipeline {
                 sh 'mvn clean && mvn spring-boot:build-image -Dmaven.test.skip=true -Dspring-boot.build-image.imageName=registry.openexl.com/piggys-wallet-api:${GIT_COMMIT}'
             }
         }
+
         stage('Push to docker hub') {
             steps {
                 script {
