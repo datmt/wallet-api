@@ -10,9 +10,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
-@Document(collection = "user_wallets")
+@Data
+@Document(collection = "wallets")
 public class Wallet implements Serializable {
 
     @Id

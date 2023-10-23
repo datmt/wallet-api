@@ -8,8 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 
-@Getter
-@Setter
+@Data
 @Document(collection = "files")
 public class FileUpload implements Serializable {
     @Id
