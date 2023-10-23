@@ -36,6 +36,9 @@ public class WalletService {
             throw new IllegalArgumentException("Wallet title is required");
         }
 
+        if (!currentUserService.getCurrentUserId().equals(wallet.getOwnerId())) {
+            throw new IllegalArgumentException("You are not the owner of this wallet");
+        }
         walletRepository.findByOwnerIdAndId(currentUserService.getCurrentUserId(), wallet.getId())
                 .orElseThrow(() -> new IllegalArgumentException("Wallet not found"));
 
