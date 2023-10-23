@@ -9,6 +9,7 @@ pipeline {
         //The path in the deploy command are the one on the prod and preview environment respectively
         DEPLOY_COMMAND="ssh -o StrictHostKeyChecking=no  -p 25782 jenkins-agent@sso.openexl.com  echo PIGGYS_WALLET_API_VERSION=${GIT_COMMIT} > /data/other-projects/piggys-wallet/.env && docker-compose -f /data/other-projects/piggys-wallet/piggys-wallet-api.yaml up -d"
 
+
         JAVA_HOME="/opt/jdk-17.0.6/"
 
         SSH_AGENT="jenkins_docker_agent"
